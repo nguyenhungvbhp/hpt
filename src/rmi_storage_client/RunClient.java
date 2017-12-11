@@ -40,7 +40,7 @@ public class RunClient extends javax.swing.JFrame {
     }
 
     private void connectToServer() throws Exception {
-        System.setProperty("java.security.policy","E:\\Subject\\Ky1Nam4\\Hephantan\\BTL_HPT\\rmi_storage_client\\security.policy");
+        System.setProperty("java.security.policy","C:\\Users\\20141.DESKTOP-HNCVNSO\\Desktop\\HePhanTan\\security.policy");
         System.getProperty("java.rmi.server.hostname", getIp());
         String url = "rmi://" + TFip.getText() + ":6969" + "/server";
         server = (FileServerInt) Naming.lookup(url);
