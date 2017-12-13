@@ -106,7 +106,7 @@ public class UpDownload extends Thread {
             FileInputStream fis;
             FileOutputStream fos;
             int sizeSrcFile = (int) source.length();
-            int sizeEachFile = 1 * 1024 * 256;
+            int sizeEachFile = 1 * 1024 * 128;
             int nChunks = 0, read = 0, readLength = sizeEachFile;
             byte[] byteChunkPart;
 
