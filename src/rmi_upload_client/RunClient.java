@@ -40,7 +40,7 @@ public class RunClient extends javax.swing.JFrame {
     }
 
     private void connectToServer() throws Exception {
-        System.setProperty("java.security.policy","C:\\Users\\20141.DESKTOP-HNCVNSO\\Desktop\\HePhanTan\\security.policy");
+        System.setProperty("java.security.policy","E:\\Document\\HePhanTan\\hpt\\security.policy");
         System.getProperty("java.rmi.server.hostname", getIp());
         String url = "rmi://" + TFip.getText() + ":6969" + "/server";
         server = (FileServerInt) Naming.lookup(url);
@@ -150,7 +150,11 @@ public class RunClient extends javax.swing.JFrame {
 
         jLabel1.setText("  IP/localhost");
 
+        TFip.setText("127.0.0.1");
+
         jLabel2.setText("  Forder Share");
+
+        TFfordershare.setText("C:\\Users\\Administrator\\Desktop\\download");
 
         BTchose.setText("Choose Folder");
         BTchose.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +171,8 @@ public class RunClient extends javax.swing.JFrame {
         });
 
         jLabel3.setText(" Name");
+
+        TFname.setText("hung");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -294,6 +300,8 @@ public class RunClient extends javax.swing.JFrame {
         });
     }
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTchose;
     private javax.swing.JButton BTconnect;

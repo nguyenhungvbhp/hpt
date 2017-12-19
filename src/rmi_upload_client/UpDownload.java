@@ -48,10 +48,15 @@ public class UpDownload extends Thread {
 
     }
 
+    long tong = 0;
+    long uploaded = 0;
+
     public UpDownload(File source, File destination, int state) {
         this.source = source;
         this.destination = destination;
         this.state = state;
+        System.out.println("Size file: " + source.length() + "bytes");
+        tong = source.length();
     }
 
     public UpDownload(FileClientInt client, FileServerInt server,
@@ -69,44 +74,16 @@ public class UpDownload extends Thread {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         String sts = sdf.format(source.lastModified());
         String dts = sdf.format(destination.lastModified());
-        System.out.println(sts);
-        System.out.println(dts);
+        System.out.println("sts: " + sts);
+        System.out.println("dts: " + dts);
         destination = new File(destination.getParent() + "\\" + destination.getName() + "\\" + source.getName());
-        //
 
-//        if (source.isFile()) {
-//            if (state == 1) {
-//                System.out.println("begin running");
-//                splitFile(source, destination);
-//                mergeFile(destination);
-//                System.out.println("Da upload thanh cong");
-//            } else if (state == 2) {
-//                splitFile(source, destination);
-//                mergeFile(destination);
-//                System.out.println("Da tai thanh cong");
-//            }
-//
-////                splitFile(srcFile, destFile);
-////                mergeFile(destFile);
-////                System.out.println("Da tai thanh cong");
-//        }
-//        if (source.isDirectory()) {
-//            // Neu thu muc dich khong ton tai thi tao ra thu muc moi
-//            if (!destination.exists()) {
-//                destination.mkdirs();
-//            }
-//            File[] listFile = source.listFiles();
-//            for (File f : listFile) {
-////                    System.out.println(f.getAbsolutePath());
-////                    System.out.println(destFile);
-//                copyFile(new File(f.getAbsolutePath()), new File(destFile + "\\" + f.getName()));
-//            }
-//        }
         try {
             FileInputStream fis;
             FileOutputStream fos;
             int sizeSrcFile = (int) source.length();
-            int sizeEachFile = 1 * 1024 * 128;
+            System.out.println("Sizesrcfile: " + sizeSrcFile);
+            int sizeEachFile = 64 * 1024;
             int nChunks = 0, read = 0, readLength = sizeEachFile;
             byte[] byteChunkPart;
 
@@ -119,9 +96,14 @@ public class UpDownload extends Thread {
                 byteChunkPart = new byte[readLength];
                 read = fis.read(byteChunkPart, 0, (int) readLength);
                 sizeSrcFile -= read;
+                uploaded += read;
+                System.out.println("Read: " + read);
+                System.out.println("Uploaded: " + uploaded);
+                System.out.println("sizeSrcFile: " + sizeSrcFile);
+                System.out.println("Uploaded " + uploaded * 100 / tong + "%");
                 nChunks++;
                 countTotalFile = nChunks;
-                System.out.println(countTotalFile);
+                System.out.println("Total file: " + countTotalFile);
                 fos = new FileOutputStream(new File(destination.getAbsoluteFile() + ".part") + Integer.toString(nChunks));
                 fos.write(byteChunkPart);
                 fos.flush();
@@ -176,6 +158,7 @@ public class UpDownload extends Thread {
         FileInputStream fis;
         FileOutputStream fos;
         int sizeSrcFile = (int) srcFile.length();
+        System.out.println("Size: " + sizeSrcFile + "bytes");
         int sizeEachFile = 16 * 1024 * 1024;
         int nChunks = 0, read = 0, readLength = sizeEachFile;
         byte[] byteChunkPart;
@@ -190,7 +173,7 @@ public class UpDownload extends Thread {
                 sizeSrcFile -= read;
                 nChunks++;
                 countTotalFile = nChunks;
-                System.out.println(countTotalFile);
+                System.out.println("Total file: " + countTotalFile);
                 fos = new FileOutputStream(new File(desFile.getAbsoluteFile() + ".part") + Integer.toString(nChunks));
                 fos.write(byteChunkPart);
                 fos.flush();
@@ -212,7 +195,7 @@ public class UpDownload extends Thread {
         byte[] fileBytes;
         int bytesRead = 0;
         List<File> list = new ArrayList<File>();
-        System.out.println(countTotalFile);
+        System.out.println("Number: " + countTotalFile);
         for (int i = 1; i <= countTotalFile; i++) {
             list.add(new File(srcFile.getAbsoluteFile() + ".part" + i));
         }
@@ -258,8 +241,6 @@ public class UpDownload extends Thread {
             }
             File[] listFile = srcFile.listFiles();
             for (File f : listFile) {
-//                    System.out.println(f.getAbsolutePath());
-//                    System.out.println(destFile);
                 copyFile(new File(f.getAbsolutePath()), new File(destFile + "\\" + f.getName()));
             }
         }

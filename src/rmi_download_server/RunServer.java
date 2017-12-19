@@ -173,7 +173,7 @@ public class RunServer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Hãy chọn thư mục download");
         }else {
             try {
-                System.setProperty("java.security.policy","C:\\Users\\20141.DESKTOP-HNCVNSO\\Desktop\\HePhanTan\\security.policy");
+                System.setProperty("java.security.policy","E:\\Document\\HePhanTan\\hpt\\security.policy");
                 System.getProperty("java.rmi.server.hostname", getIp());
                 if(System.getSecurityManager() == null){
                     System.setSecurityManager(new RMISecurityManager());

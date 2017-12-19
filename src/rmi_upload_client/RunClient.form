@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -89,6 +89,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TFip">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="127.0.0.1"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -96,6 +99,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TFfordershare">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="C:\u005cUsers\u005cAdministrator\u005cDesktop\u005cdownload" containsInvalidXMLChars="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="BTchose">
       <Properties>
@@ -119,6 +125,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TFname">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="hung"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
